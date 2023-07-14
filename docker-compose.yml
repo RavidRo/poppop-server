@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+    server:
+        build:
+            context: server
+        container_name: server
+        restart: always
+        ports:
+            - 25565:25565
+        volumes:
+            - worlds:/opt/server/worlds
+            - ./logs:/opt/server/logs
+        logging:
+            driver: 'json-file'
+            options:
+                max-size: '200k'
+                max-file: '10'
+        stdin_open: true
+        tty: true
+        deploy:
+            resources:
+                limits:
+                    cpus: '2'
+                    memory: 10G
+                reservations:
+                    cpus: '1'
+                    memory: 10M
+
+volumes:
+    worlds:

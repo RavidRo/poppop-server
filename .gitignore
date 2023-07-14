@@ -4,3 +4,5 @@ libraries/*
 versions/*
 *.stackdump
 .console_history
+worlds
+cache
