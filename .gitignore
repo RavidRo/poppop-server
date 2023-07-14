@@ -2,3 +2,5 @@ logs/*
 worlds/*
 libraries/*
 versions/*
+*.stackdump
+.console_history
