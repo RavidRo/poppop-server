@@ -13,7 +13,7 @@ RUN crontab /etc/cron.d/ip_detector_cron
 
 COPY requirements.txt .
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir requests
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY main.py main.py
 
