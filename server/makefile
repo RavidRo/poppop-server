@@ -1,4 +1,4 @@
-WORLD_NAME := HoyBlock
+WORLD_NAME := GoingToCraft
 
 INITIAL_MEMORY := 10G
 MAX_MEMORY := 10G

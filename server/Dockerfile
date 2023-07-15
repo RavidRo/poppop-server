@@ -1,3 +1,7 @@
+# Refrences
+# https://github.com/mtoensing/Docker-Minecraft-PaperMC-Server
+# https://github.com/Phyremaster/papermc-docker
+
 FROM eclipse-temurin:20-jre
 
 RUN apt-get update \
@@ -10,4 +14,4 @@ WORKDIR /opt/server
 
 EXPOSE 25565
 
-CMD make start
+ENTRYPOINT make start

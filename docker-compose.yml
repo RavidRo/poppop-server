@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 services:
     server:
         build:
@@ -25,6 +25,14 @@ services:
                 reservations:
                     cpus: '1'
                     memory: 10M
+    ip_detector:
+        build:
+            context: ip_detector
+        container_name: ip_detector
+        restart: always
+        volumes:
+            - ip:/ip
 
 volumes:
     worlds:
+    ip:
