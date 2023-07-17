@@ -1,15 +1,15 @@
 version: '3'
 services:
-    server:
+    mcserver:
         build:
-            context: server
-        container_name: server
+            context: mcserver
+        container_name: mcserver
         restart: always
         ports:
             - 25565:25565
         volumes:
-            - worlds:/opt/server/worlds
-            - ./logs:/opt/server/logs
+            - worlds:/opt/mcserver/worlds
+            - ./logs:/opt/mcserver/logs
         logging:
             driver: 'json-file'
             options:
