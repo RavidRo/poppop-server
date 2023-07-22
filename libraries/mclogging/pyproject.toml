@@ -1,0 +1,12 @@
+[project]
+name = "mclogging"
+version = "1.0.0"
+description = "Common logger setup for python projects"
+requires-python = ">=3.10"
+dependencies = [
+	"loguru==0.7.0",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

@@ -1,15 +1,26 @@
 version: '3'
 services:
+    queue:
+        image: rabbitmq:3-management
+        container_name: queue
+        restart: always
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        volumes:
+            - rabbitmq:/var/lib/rabbitmq
+            - ./logs/queue:/var/log/rabbitmq
     mcserver:
         build:
-            context: mcserver
+            context: .
+            dockerfile: mcserver/Dockerfile
         container_name: mcserver
         restart: always
         ports:
-            - 25565:25565
+            - "25565:25565"
         volumes:
             - worlds:/opt/mcserver/worlds
-            - ./logs:/opt/mcserver/logs
+            - ./logs/mcserver:/opt/mcserver/logs
         logging:
             driver: 'json-file'
             options:
@@ -27,12 +38,25 @@ services:
                     memory: 10M
     ip_detector:
         build:
-            context: ip_detector
+            context: .
+            dockerfile: ip_detector/Dockerfile
         container_name: ip_detector
         restart: always
         volumes:
-            - ip:/ip
-
+            - ./ip.txt:/ip/ip.txt
+            - ./logs/ip_detector:/logs
+        depends_on:
+            - queue
+    announcer:
+        build:
+            context: .
+            dockerfile: announcer/Dockerfile
+        container_name: announcer
+        restart: always
+        depends_on:
+            - queue
+        volumes:
+            - ./logs/announcer:/logs
 volumes:
     worlds:
-    ip:
+    rabbitmq:

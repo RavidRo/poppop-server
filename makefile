@@ -13,9 +13,14 @@ help: ## prints this message ##
 	perl -nle '/(.*?): ## (.*?) ## (.*$$)/; if ($$3 eq "") { printf ( "$(COMMAND_COLOR)%-20s$(DESC_COLOR)%s$(CLEAR_COLOR)\n\n", $$1, $$2) } else { printf ( "$(COMMAND_COLOR)%-20s$(DESC_COLOR)%s$(CLEAR_COLOR)\n%-20s%s\n\n", $$1, $$2, " ", $$3) }';
 	
 .PHONY: start
-start: ## docker-compose up --build ## (starts the minecraft server)
+start: ## docker-compose up -d --build ## (starts the minecraft server)
 	@echo "Starting Minecraft Server..."; \
-	docker-compose up -d --build;
+	docker-compose up -d --build $(SERVICES);
+
+.PHONY: dev
+dev: ## docker-compose up --build ## (starts the minecraft server in dev mode)
+	@echo "Starting Minecraft Server..."; \
+	docker-compose up --build $(SERVICES);
 
 .PHONY: stop
 stop: ## docker-compose stop --rmi all --remove-orphans: ## (stops and cleans up images, but keeps data)

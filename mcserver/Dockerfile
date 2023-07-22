@@ -25,7 +25,7 @@ RUN adduser dockeruser \
 	--gecos ""
 
 
-COPY --chown=dockeruser:dockergroup . /opt/mcserver
+COPY --chown=dockeruser:dockergroup ./mcserver /opt/mcserver
 WORKDIR /opt/mcserver
 
 EXPOSE 25565

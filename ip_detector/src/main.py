@@ -1,8 +1,10 @@
-from typing import Optional
-import requests
 import os
 import pathlib
+from typing import Optional
 
+import requests
+from mcqueue import Queue
+from mclogging import setup_logs, logger
 
 IP_FILE_PATH = pathlib.Path("/ip/ip.txt")
 IP_API_URL = "https://api.ipify.org"
@@ -22,7 +24,8 @@ def save_new_ip(new_ip: str) -> None:
 
 
 def announce_new_ip(new_ip: str) -> None:
-    print("New IP address detected: ", new_ip)
+    Queue().publish(f"Our IP address has changed! {new_ip}")
+    logger.info(f"New IP address detected: {new_ip}")
 
 
 def get_current_ip() -> str:
@@ -33,6 +36,8 @@ def get_current_ip() -> str:
 
 
 if __name__ == "__main__":
+    setup_logs("ip_detector")
+    logger.info("Searching for new IP address...")
     old_ip = get_old_ip()
     current_ip = get_current_ip()
     if old_ip != current_ip:
