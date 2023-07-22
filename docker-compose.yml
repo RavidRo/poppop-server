@@ -19,8 +19,9 @@ services:
         ports:
             - "25565:25565"
         volumes:
-            - worlds:/opt/mcserver/worlds
+#            - worlds:/opt/mcserver/worlds
             - ./logs/mcserver:/opt/mcserver/logs
+            - ./mcserver:/opt/mcserver
         logging:
             driver: 'json-file'
             options:

@@ -9,6 +9,8 @@ cache
 *.egg-info
 build
 ip.txt
+**/spark/tmp/
+**/GSit/data/data.db
 
 ### virtualenv template
 # Virtualenv
