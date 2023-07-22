@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import os
 import threading
 from typing import Any, Optional
 
@@ -9,7 +10,8 @@ from discord import Intents, TextChannel
 from mclogging import logger, setup_logs
 from mcqueue import Queue
 
-DISCORD_TOKEN = "ODcyNzEzNzQwMzA1NDYxMjk5.YQt4AQ.99TCVbpXqNJXl2ULSyvnXRZ6EZI"
+
+DISCORD_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 
 
 class Consumer:

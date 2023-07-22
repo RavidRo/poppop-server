@@ -57,6 +57,8 @@ services:
             - queue
         volumes:
             - ./logs/announcer:/logs
+        env_file:
+            -   ./.env
 volumes:
     worlds:
     rabbitmq:
