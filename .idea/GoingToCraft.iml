@@ -13,6 +13,12 @@
       <excludeFolder url="file://$MODULE_DIR$/libraries/mcqueue/mcqueue/mcqueue.egg-info" />
       <excludeFolder url="file://$MODULE_DIR$/logs" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/mcserver/bluemap" />
+      <excludeFolder url="file://$MODULE_DIR$/mcserver/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/mcserver/libraries" />
+      <excludeFolder url="file://$MODULE_DIR$/mcserver/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/mcserver/plugins/TabTPS/userdata" />
+      <excludeFolder url="file://$MODULE_DIR$/mcserver/worlds" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,4 +1,4 @@
-logs/*
+**/logs/*
 worlds/*
 mcserver/libraries/*
 versions/*
@@ -11,6 +11,8 @@ build
 ip.txt
 **/spark/tmp/
 **/GSit/data/data.db
+**/mcserver/bluemap/
+**/tabtps/userdata/
 
 ### virtualenv template
 # Virtualenv

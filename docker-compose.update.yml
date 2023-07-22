@@ -1,0 +1,8 @@
+version: '3'
+services:
+    mcserver:
+        build:
+            context: .
+            dockerfile: mcserver/Dockerfile
+        volumes:
+            - ./mcserver:/opt/mcserver

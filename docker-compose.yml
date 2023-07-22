@@ -18,10 +18,14 @@ services:
         restart: always
         ports:
             - "25565:25565"
+            - "8100:8100"
         volumes:
-#            - worlds:/opt/mcserver/worlds
+            - worlds:/opt/mcserver/worlds
+            - gsit:/opt/mcserver/plugins/GSit/data
+            - maps:/opt/mcserver/plugins/bluemap/web
+            - tabtps:/opt/mcserver/plugins/tabtps/userdata
             - ./logs/mcserver:/opt/mcserver/logs
-            - ./mcserver:/opt/mcserver
+            - ./logs/bluemap:/bluemap/logs
         logging:
             driver: 'json-file'
             options:
@@ -63,3 +67,6 @@ services:
 volumes:
     worlds:
     rabbitmq:
+    gsit:
+    maps:
+    tabtps:

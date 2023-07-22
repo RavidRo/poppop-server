@@ -22,6 +22,11 @@ dev: ## docker-compose up --build ## (starts the minecraft server in dev mode)
 	@echo "Starting Minecraft Server..."; \
 	docker-compose up --build $(SERVICES);
 
+.PHONY: update
+update: ## Updates the minecraft server files by mounting all the files in the server directory
+	@echo "Running Minecraft Server..."; \
+	docker-compose -f docker-compose.update.yml up --build;
+
 .PHONY: stop
 stop: ## docker-compose stop --rmi all --remove-orphans: ## (stops and cleans up images, but keeps data)
 	@echo "Stopping Minecraft Server and cleaning up..."; \
