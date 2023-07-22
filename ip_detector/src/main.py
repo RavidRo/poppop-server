@@ -24,7 +24,8 @@ def save_new_ip(new_ip: str) -> None:
 
 
 def announce_new_ip(new_ip: str) -> None:
-    Queue().publish(f"Our IP address has changed! {new_ip}")
+    with Queue() as q:
+        q.publish(f"Our IP address has changed! {new_ip}")
     logger.info(f"New IP address detected: {new_ip}")
 
 

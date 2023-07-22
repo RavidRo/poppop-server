@@ -4,7 +4,7 @@ from pathlib import Path
 from loguru import logger
 
 
-TIME_FORMAT = "{time:YYYY-MM-DD at HH:mm:ss}"
+TIME_FORMAT = "{time:YYYY-MM-DD HH:mm:ss}"
 
 LOGS_PATH = Path("/logs")
 
@@ -26,8 +26,8 @@ def cyan(text: str) -> str:
 
 
 def setup_logs(component: str):
-    stdout_format = f"{green(TIME_FORMAT)} | {cyan(component)} | {level('{level}')} | {level('{message}')}"
-    file_format = f"{TIME_FORMAT} | {component} | {'{level}'} | {'{message}'}"
+    stdout_format = f"[{green(TIME_FORMAT)} {level('{level}')}] {cyan(component)}: {level('{message}')}"
+    file_format = f"[{TIME_FORMAT} {{level}}] {component}: {{message}}"
 
     logger.configure(handlers=[])
     logger.add(
