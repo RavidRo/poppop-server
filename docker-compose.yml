@@ -19,6 +19,7 @@ services:
         ports:
             - "25565:25565"
             - "8100:8100"
+            - "9100:9100"
         volumes:
             - worlds:/opt/mcserver/worlds
             - gsit:/opt/mcserver/plugins/GSit/data
@@ -64,9 +65,29 @@ services:
             - ./logs/announcer:/logs
         env_file:
             -   ./.env
+    grafana:
+        image: grafana/agent:latest
+        container_name: grafana
+        restart: always
+        depends_on:
+            - mcserver
+        security_opt:
+            - no-new-privileges:true
+        volumes:
+            - ./grafana/agent-config.yml:/etc/agent-config/agent.yml
+        entrypoint:
+            - /bin/agent
+            - -config.file=/etc/agent-config/agent.yml
+            - -prometheus.wal-directory=/tmp/agent/wal
+        networks:
+            - prometheus
 volumes:
     worlds:
     rabbitmq:
     gsit:
     maps:
     tabtps:
+
+networks:
+    prometheus:
+        external: true
