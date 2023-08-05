@@ -13,6 +13,7 @@ ip.txt
 **/GSit/data/data.db
 **/mcserver/bluemap/
 **/tabtps/userdata/
+**/Backups/*
 
 ### virtualenv template
 # Virtualenv

@@ -1,0 +1,24 @@
+# DO NOT CHANGE
+configVersion: 3.0
+lastBackup: 0
+
+# Automatic backup once in a specified period
+autoBackup: true
+# Full directory where backups will be stored
+backupsFolder: plugins/Backuper/Backups
+# First backup time (0 - 23)
+firstBackupTime: 16
+# Fixed backup time (all backups will take place at a certain time, specified in the firstBackupTime. When enabled, the backupPeriod automatically becomes 24 hours) (Recommended)
+fixedBackupTime: false
+# Backup period in hours
+backupPeriod: 1
+# What to do after backup, (STOP, RESTART, NOTHING)
+afterBackup: NOTHING
+# Max backups in backups folder, 0 to make it unlimited
+maxBackupsNumber: 5
+# Max backups folder weight in MB, 0 to make it unlimited
+maxBackupsWeight: 0
+# Should backups be packaged in a zip archive
+zipArchive: true
+# Better logging
+betterLogging: true

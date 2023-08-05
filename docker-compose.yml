@@ -5,8 +5,8 @@ services:
         container_name: queue
         restart: always
         ports:
-            - "5672:5672"
-            - "15672:15672"
+            - '5672:5672'
+            - '15672:15672'
         volumes:
             - rabbitmq:/var/lib/rabbitmq
             - ./logs/queue:/var/log/rabbitmq
@@ -17,14 +17,15 @@ services:
         container_name: mcserver
         restart: always
         ports:
-            - "25565:25565"
-            - "8100:8100"
-            - "9100:9100"
+            - '25565:25565'
+            - '8100:8100'
+            - '9100:9100'
         volumes:
             - worlds:/opt/mcserver/worlds
             - gsit:/opt/mcserver/plugins/GSit/data
             - maps:/opt/mcserver/plugins/bluemap/web
             - tabtps:/opt/mcserver/plugins/tabtps/userdata
+            - ./backups:/opt/mcserver/plugins/Backuper/Backups
             - ./logs/mcserver:/opt/mcserver/logs
             - ./logs/bluemap:/bluemap/logs
         logging:
@@ -64,23 +65,39 @@ services:
         volumes:
             - ./logs/announcer:/logs
         env_file:
-            -   ./.env
-    grafana:
-        image: grafana/agent:latest
-        container_name: grafana
-        restart: always
-        depends_on:
-            - mcserver
-        security_opt:
-            - no-new-privileges:true
+            - ./.env
+    # grafana:
+    #     image: grafana/agent:latest
+    #     container_name: grafana
+    #     restart: always
+    #     depends_on:
+    #         - mcserver
+    #     security_opt:
+    #         - no-new-privileges:true
+    #     volumes:
+    #         - ./grafana/agent-config.yml:/etc/agent-config/agent.yml
+    #     # entrypoint:
+    #     #     - /bin/agent
+    #     #     - -config.file=/etc/agent-config/agent.yml
+    #     #     - -prometheus.wal-directory=/tmp/agent/wal
+    #     networks:
+    #         - prometheus
+    # Example: BACKUP='04.08.2023\ 22:14:24' docker-compose up --build load_backup
+    load_backup:
+        image: alpine:latest
+        container_name: load_backup
         volumes:
-            - ./grafana/agent-config.yml:/etc/agent-config/agent.yml
+            - worlds:/opt/work/worlds
+            - ./backups:/opt/work/backups
+        working_dir: /opt/work
         entrypoint:
-            - /bin/agent
-            - -config.file=/etc/agent-config/agent.yml
-            - -prometheus.wal-directory=/tmp/agent/wal
-        networks:
-            - prometheus
+            - sh
+            - -c
+            - |
+                unzip ./backups/${BACKUP}.zip -d ./temp \
+                && rm -rf ./worlds/* \
+                && mv ./temp/worlds/* ./worlds \
+                && rm -rf ./temp
 volumes:
     worlds:
     rabbitmq:

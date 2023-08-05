@@ -29,4 +29,4 @@ COPY --chown=dockeruser:dockergroup ./mcserver /opt/mcserver
 WORKDIR /opt/mcserver
 
 EXPOSE 25565
-ENTRYPOINT ./run_as_user.sh
+CMD ./run_as_user.sh
